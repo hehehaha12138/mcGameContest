@@ -20,11 +20,12 @@ public class NewBehaviourScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+       
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (GetComponent<Rigidbody> ().position.z > 1.1) {
 			isGround = true;
 			jumpCount = 2;
@@ -33,14 +34,16 @@ public class NewBehaviourScript : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		//Constraints
-		/*GetComponent<Rigidbody> ().position = new Vector3 (
+        //Gravity
+        GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, 0.0f, 4.0f));
+        //Constraints
+        /*GetComponent<Rigidbody> ().position = new Vector3 (
 			Mathf.Clamp (GetComponent<Rigidbody> ().position.x, boundary.xMin, boundary.xMax),
 			0.0f,
 			Mathf.Clamp (GetComponent<Rigidbody> ().position.z, boundary.zMin, boundary.zMax)
 		);*/
 
-		if (GetComponent<Rigidbody> ().position.x < boundary.xMin) {
+        if (GetComponent<Rigidbody> ().position.x < boundary.xMin) {
 			GetComponent<Rigidbody> ().MovePosition (new Vector3(boundary.xMin,GetComponent<Rigidbody> ().position.y,GetComponent<Rigidbody> ().position.z));
 		}else if(GetComponent<Rigidbody> ().position.x > boundary.xMax){
 			GetComponent<Rigidbody> ().MovePosition (new Vector3(boundary.xMax,GetComponent<Rigidbody> ().position.y,GetComponent<Rigidbody> ().position.z));
@@ -55,14 +58,30 @@ public class NewBehaviourScript : MonoBehaviour {
 			float moveHorizonal = Input.GetAxis ("Horizontal");
 			float moveVertical = Input.GetAxis ("Vertical");
 
-			Vector3 movement;
+            /*Vector3 movement;
 
 			if (GetComponent<Rigidbody> ().position.z < 1) {
 				movement = new Vector3 (-moveHorizonal, 0.0f, 1);
 			} else {
 				movement = new Vector3 (-moveHorizonal, 0.0f, 0);
 			}
-			GetComponent<Rigidbody> ().AddForce (movement * speed * Time.deltaTime);
+			GetComponent<Rigidbody> ().AddForce (movement * speed * Time.deltaTime);*/
+
+            
+
+            //Movement
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                GetComponent<Rigidbody>().velocity = new Vector3(-speed, 0, GetComponent<Rigidbody>().velocity.z);
+            }
+            else if (Input.GetKeyDown(KeyCode.A)) {
+                GetComponent<Rigidbody>().velocity = new Vector3(speed, 0, 0);
+            }
+
+            //Stop
+            if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A)) {
+                GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            }
 
 
 
@@ -71,12 +90,12 @@ public class NewBehaviourScript : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.Space)) {
 				if (isGround == true ) {
 					isGround = false;
-					GetComponent<Rigidbody> ().velocity = new Vector3 ((float)0.0,(float)0.0,(float)-3.2);
+					GetComponent<Rigidbody> ().velocity = new Vector3 (GetComponent<Rigidbody>().velocity.x, (float)0.0,(float)-3.2);
 					jumpCount--;
 					//GetComponent<Rigidbody> ().AddForce (new Vector3(0,0,100));
 					//ground = false;
 				}else if(jumpCount > 0){
-					GetComponent<Rigidbody> ().velocity = new Vector3 ((float)0.0,(float)0.0,(float)-3.2);
+					GetComponent<Rigidbody> ().velocity = new Vector3 (GetComponent<Rigidbody>().velocity.x, (float)0.0,(float)-3.2);
 					jumpCount--;
 				}
 			}
