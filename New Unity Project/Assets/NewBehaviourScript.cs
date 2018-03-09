@@ -26,7 +26,7 @@ public class NewBehaviourScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if (GetComponent<Rigidbody> ().position.z > 1.1) {
+		if (GetComponent<Rigidbody> ().position.z > 0.91) {
 			isGround = true;
 			jumpCount = 2;
 		}
@@ -43,22 +43,31 @@ public class NewBehaviourScript : MonoBehaviour {
 			Mathf.Clamp (GetComponent<Rigidbody> ().position.z, boundary.zMin, boundary.zMax)
 		);*/
 
-        if (GetComponent<Rigidbody> ().position.x < boundary.xMin) {
-			GetComponent<Rigidbody> ().MovePosition (new Vector3(boundary.xMin,GetComponent<Rigidbody> ().position.y,GetComponent<Rigidbody> ().position.z));
-		}else if(GetComponent<Rigidbody> ().position.x > boundary.xMax){
-			GetComponent<Rigidbody> ().MovePosition (new Vector3(boundary.xMax,GetComponent<Rigidbody> ().position.y,GetComponent<Rigidbody> ().position.z));
-		}else if(GetComponent<Rigidbody> ().position.z < boundary.zMin){
-			GetComponent<Rigidbody> ().MovePosition (new Vector3(GetComponent<Rigidbody> ().position.x,GetComponent<Rigidbody> ().position.y,boundary.zMin));
-		}else if(GetComponent<Rigidbody> ().position.z > boundary.zMax){
-			GetComponent<Rigidbody> ().MovePosition (new Vector3(GetComponent<Rigidbody> ().position.x,GetComponent<Rigidbody> ().position.y,boundary.zMax));
-		}
+        if (GetComponent<Rigidbody>().position.x < boundary.xMin)
+        {
+            GetComponent<Rigidbody>().MovePosition(new Vector3(boundary.xMin, GetComponent<Rigidbody>().position.y, GetComponent<Rigidbody>().position.z));
+        }
+        else if (GetComponent<Rigidbody>().position.x > boundary.xMax)
+        {
+            GetComponent<Rigidbody>().MovePosition(new Vector3(boundary.xMax, GetComponent<Rigidbody>().position.y, GetComponent<Rigidbody>().position.z));
+        }
+        else if (GetComponent<Rigidbody>().position.z < boundary.zMin)
+        {
+            GetComponent<Rigidbody>().MovePosition(new Vector3(GetComponent<Rigidbody>().position.x, GetComponent<Rigidbody>().position.y, boundary.zMin));
+        }
+        else if (GetComponent<Rigidbody>().position.z > boundary.zMax)
+        {
+            GetComponent<Rigidbody>().MovePosition(new Vector3(GetComponent<Rigidbody>().position.x, GetComponent<Rigidbody>().position.y, boundary.zMax));
+        }
 
 		//Judge current camera
 		if(camera.GetComponent<Camera> ().enabled){
 			float moveHorizonal = Input.GetAxis ("Horizontal");
-			float moveVertical = Input.GetAxis ("Vertical");
+			float moveVertical  = Input.GetAxis ("Vertical");
 
-            /*Vector3 movement;
+
+            /*//oldMovement
+            Vector3 movement;
 
 			if (GetComponent<Rigidbody> ().position.z < 1) {
 				movement = new Vector3 (-moveHorizonal, 0.0f, 1);
@@ -75,7 +84,7 @@ public class NewBehaviourScript : MonoBehaviour {
                 GetComponent<Rigidbody>().velocity = new Vector3(-speed, 0, GetComponent<Rigidbody>().velocity.z);
             }
             else if (Input.GetKeyDown(KeyCode.A)) {
-                GetComponent<Rigidbody>().velocity = new Vector3(speed, 0, 0);
+                GetComponent<Rigidbody>().velocity = new Vector3(speed, 0, GetComponent<Rigidbody>().velocity.z);
             }
 
             //Stop

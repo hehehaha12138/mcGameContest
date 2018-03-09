@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class trackCamera : MonoBehaviour {
     public GameObject protagonist;
+    public float rightBoundary;
+    public float leftBoundary;
     private Vector3 relative_coordination;
     public float acc;
     private bool isRight = true;
@@ -32,15 +34,28 @@ public class trackCamera : MonoBehaviour {
         }
         Vector3 proPosition = protagonist.GetComponent<Rigidbody>().position;
         relative_coordination = GetComponent<Rigidbody>().position - proPosition;
-        Debug.Log(relative_coordination.x);
+        //Debug.Log(relative_coordination.x);
 
-        if (isRight && relative_coordination.x > 0 && GetComponent<Rigidbody>().velocity.x > speed && speed < 0)
+        //scroll right motion
+        if (GetComponent<Transform>().position.x < rightBoundary && !isLeft) {
+            Debug.Log("R" + GetComponent<Transform>().position.x);
+            //Debug.Log("RIGHT BOUND");
+            GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+        }
+        else if (isRight && relative_coordination.x > 0 && GetComponent<Rigidbody>().velocity.x > speed && speed < 0 )
         {
             if (isLeft) {
                 GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
                 isLeft = false;
             }
             GetComponent<Rigidbody>().AddForce(new Vector3(speed / 2, 0.0f, 0.0f));
+        }
+
+        //scroll left motion
+        if (GetComponent<Transform>().position.x > leftBoundary && isLeft) {
+            //Debug.Log("L"+GetComponent<Transform>().position.x);
+            //Debug.Log("LEFT BOUND");
+            GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
         }
         else if (!isRight && relative_coordination.x < 0 && GetComponent<Rigidbody>().velocity.x < speed && speed > 0) {
             if (!isLeft) {
