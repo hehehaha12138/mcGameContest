@@ -282,25 +282,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Completed-Game\Prefabs\sphereCollider.cs" />
     <Compile Include="Assets\_Completed-Game\Scripts\CameraController.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\CameraPos.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\CameraSwitch.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\collider_controller.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\dialogue_UI_Motion.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\Entering.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\GameController.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\loading.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\loadMainScene.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\NewBehaviourScript.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\planeAction.cs" />
     <Compile Include="Assets\_Completed-Game\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\PlotController.cs" />
     <Compile Include="Assets\_Completed-Game\Scripts\Rotator.cs" />
-    <Compile Include="Assets\CameraPos.cs" />
-    <Compile Include="Assets\CameraSwitch.cs" />
-    <Compile Include="Assets\collider_controller.cs" />
-    <Compile Include="Assets\dialogue_UI_Motion.cs" />
-    <Compile Include="Assets\Entering.cs" />
-    <Compile Include="Assets\GameController.cs" />
-    <Compile Include="Assets\loading.cs" />
-    <Compile Include="Assets\loadMainScene.cs" />
-    <Compile Include="Assets\NewBehaviourScript.cs" />
-    <Compile Include="Assets\planeAction.cs" />
-    <Compile Include="Assets\sphereCollider.cs" />
-    <Compile Include="Assets\sphereJudgement.cs" />
-    <Compile Include="Assets\trackCamera.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\sphereJudgement.cs" />
+    <Compile Include="Assets\_Completed-Game\Scripts\trackCamera.cs" />
+    <Compile Include="Assets\_Completed-Game\TutorialInfo\Scripts\Readme.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\_Completed-Game\Plots\testPlots.txt" />
+    <None Include="Assets\_Completed-Game\Plots\tutorialPlots.txt" />
     <None Include="Assets\_Completed-Game\Shader\loadingShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

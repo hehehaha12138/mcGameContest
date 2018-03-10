@@ -288,9 +288,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
+    <Compile Include="Assets\_Completed-Game\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\_Completed-Game\Plots\testPlots.txt" />
+    <None Include="Assets\_Completed-Game\Plots\tutorialPlots.txt" />
     <None Include="Assets\_Completed-Game\Shader\loadingShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: 506141488dd564f42a36c833768b5476
+timeCreated: 1518082557
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: ' 1'
+    100002: ' 2'
+    100004: Area Omni01
+    100006: Camera01
+    100008: Camera01.Target
+    100010: Estrella
+    100012: Estrella 1
+    100014: Estrella Collapsed
+    100016: FDirect01
+    100018: FDirect02
+    100020: FDirect03
+    100022: FDirect04
+    100024: FDirect05
+    100026: FDirect06
+    100028: FDirect07
+    100030: FDirect08
+    100032: FDirect09
+    100034: FDirect10
+    100036: FDirect11
+    100038: FDirect12
+    100040: FDirect13
+    100042: FDirect14
+    100044: FDirect15
+    100046: FDirect16
+    100048: GeoSphere01
+    100050: GeoSphere02
+    100052: Group01
+    100054: Line01
+    100056: Line02
+    100058: Line03
+    100060: Line04
+    100062: Line05
+    100064: Line06
+    100066: Line07
+    100068: Line08
+    100070: Line09
+    100072: Omni01
+    100074: Omni02
+    100076: Omni03
+    100078: Omni04
+    100080: Omni05
+    100082: //RootNode
+    400000: ' 1'
+    400002: ' 2'
+    400004: Area Omni01
+    400006: Camera01
+    400008: Camera01.Target
+    400010: Estrella
+    400012: Estrella 1
+    400014: Estrella Collapsed
+    400016: FDirect01
+    400018: FDirect02
+    400020: FDirect03
+    400022: FDirect04
+    400024: FDirect05
+    400026: FDirect06
+    400028: FDirect07
+    400030: FDirect08
+    400032: FDirect09
+    400034: FDirect10
+    400036: FDirect11
+    400038: FDirect12
+    400040: FDirect13
+    400042: FDirect14
+    400044: FDirect15
+    400046: FDirect16
+    400048: GeoSphere01
+    400050: GeoSphere02
+    400052: Group01
+    400054: Line01
+    400056: Line02
+    400058: Line03
+    400060: Line04
+    400062: Line05
+    400064: Line06
+    400066: Line07
+    400068: Line08
+    400070: Line09
+    400072: Omni01
+    400074: Omni02
+    400076: Omni03
+    400078: Omni04
+    400080: Omni05
+    400082: //RootNode
+    2000000: Camera01
+    2100000: 1 - Default123
+    2100002: 2 - Default
+    2300000: Estrella Collapsed
+    2300002: GeoSphere01
+    2300004: GeoSphere02
+    3300000: Estrella Collapsed
+    3300002: GeoSphere01
+    3300004: GeoSphere02
+    4300000: Estrella Collapsed
+    4300002: GeoSphere01
+    4300004: GeoSphere02
+    9500000: //RootNode
+    10800000: Area Omni01
+    10800002: FDirect01
+    10800004: FDirect02
+    10800006: FDirect03
+    10800008: FDirect04
+    10800010: FDirect05
+    10800012: FDirect06
+    10800014: FDirect07
+    10800016: FDirect08
+    10800018: FDirect09
+    10800020: FDirect10
+    10800022: FDirect11
+    10800024: FDirect12
+    10800026: FDirect13
+    10800028: FDirect14
+    10800030: FDirect15
+    10800032: FDirect16
+    10800034: Omni01
+    10800036: Omni02
+    10800038: Omni03
+    10800040: Omni04
+    10800042: Omni05
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
