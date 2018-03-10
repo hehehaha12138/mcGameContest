@@ -288,7 +288,10 @@
     <Compile Include="Assets\CameraPos.cs" />
     <Compile Include="Assets\CameraSwitch.cs" />
     <Compile Include="Assets\collider_controller.cs" />
+    <Compile Include="Assets\dialogue_UI_Motion.cs" />
+    <Compile Include="Assets\Entering.cs" />
     <Compile Include="Assets\GameController.cs" />
+    <Compile Include="Assets\loading.cs" />
     <Compile Include="Assets\loadMainScene.cs" />
     <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\planeAction.cs" />
@@ -296,6 +299,9 @@
     <Compile Include="Assets\sphereJudgement.cs" />
     <Compile Include="Assets\trackCamera.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\_Completed-Game\Shader\loadingShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

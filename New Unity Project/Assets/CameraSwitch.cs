@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour {
 
+    public GameObject plane;
+    public GameObject[] obstacles;
 	public GameObject[] cameras;
 	public string[] shotcuts;
 	public Vector3 OriginPos;
@@ -24,6 +26,7 @@ public class CameraSwitch : MonoBehaviour {
 			if (Input.GetKeyUp (shotcuts [i]))
 				SwitchCamera (i);
 		}
+        GetSection();
 	}
 
 	void SwitchCamera(int index){
@@ -47,4 +50,25 @@ public class CameraSwitch : MonoBehaviour {
 		}
 
 	}
+
+    void GetSection() {
+        for (int i = 0; i < obstacles.Length; i++) {
+            Vector3 obstaclePosition = obstacles[i].GetComponent<Transform>().position;
+            Vector3 planePosition = plane.GetComponent<Transform>().position;
+
+            Mesh mesh = obstacles[i].GetComponent<MeshFilter>().mesh;
+            Vector3 meshSize = mesh.bounds.size;
+            Vector3 scale = transform.lossyScale;
+            double r = meshSize.y * scale.y;
+
+            /*SphereCollider cap = obstacles[i].GetComponent<SphereCollider>();
+            double r = cap.radius;*/
+            //Debug.Log(obstaclePosition);
+            //Debug.Log(r);
+            double smallR = System.Math.Pow(r,2)-System.Math.Pow(planePosition.y-obstaclePosition.y,2);
+            //smallR = System.Math.Pow(smallR, 0.5);
+            Debug.Log(smallR);
+        }
+
+    }
 }

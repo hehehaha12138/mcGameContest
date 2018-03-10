@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 
 public class trackCamera : MonoBehaviour {
+    public GameObject UI;
     public GameObject protagonist;
     public float rightBoundary;
     public float leftBoundary;
@@ -67,5 +68,6 @@ public class trackCamera : MonoBehaviour {
         if (speed == 0 && relative_coordination.x < 0.1 && relative_coordination.x>-0.1) {
             GetComponent<Rigidbody>().velocity = new Vector3(0.0f,0.0f,0.0f);
         }
+        UI.GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity;
     }
 }
