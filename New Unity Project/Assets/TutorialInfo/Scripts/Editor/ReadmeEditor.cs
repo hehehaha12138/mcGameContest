@@ -15,7 +15,7 @@ public class ReadmeEditor : Editor {
 	static float kSpace = 16f;
 	
 	static ReadmeEditor()
-	{
+	{   
 		EditorApplication.delayCall += SelectReadmeAutomatically;
 	}
 	
