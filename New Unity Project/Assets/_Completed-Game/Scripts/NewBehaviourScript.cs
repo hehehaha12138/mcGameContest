@@ -18,11 +18,13 @@ public class NewBehaviourScript : MonoBehaviour {
 	private bool isGround = true;
 	private int jumpCount = 2;
     public bool isInit = false;
+    public delegate void moveEventHandler(Vector3 position);
+    public static event moveEventHandler onMove;
 
-	// Use this for initialization
-	void Start () {
-       
-
+    // Use this for initialization
+    void Start () {
+        CameraSwitch.on3DCamera += new CameraSwitch.CameraChangeEventHandler(on3D);
+        CameraSwitch.on2DCamera += new CameraSwitch.CameraChangeEventHandler(on2D);
     }
 
     // Update is called once per frame
@@ -110,8 +112,9 @@ public class NewBehaviourScript : MonoBehaviour {
 				}
 			}
 		}
-
+        onMove(transform.position);
 	}
+
 
 	private void OnTriggerEnter(Collider other){
 		if (count > 0 && other.name != "my_plane_test") {
@@ -135,4 +138,13 @@ public class NewBehaviourScript : MonoBehaviour {
 			jumpCount = 2;
 		}
 	}
+
+    public void on3D() {
+        transform.Rotate(0, 0, 90);
+    }
+
+    public void on2D()
+    {
+        transform.Rotate(0, 0, -90);
+    }
 }

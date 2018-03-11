@@ -27,7 +27,7 @@ public class PlotController : MonoBehaviour {
         UnityEngine.UI.Text text = myText.GetComponent<UnityEngine.UI.Text>();
         speedCount++;
         if (speedCount > 1) {
-            Debug.Log(speedCount);
+            //Debug.Log(speedCount);
             if (speedCount == speed) {
                 speedCount = 0;
             } else if (speedCount == lineSpeed) {
@@ -37,7 +37,7 @@ public class PlotController : MonoBehaviour {
             return;
         }
         
-        Debug.Log("textChange!");
+        //Debug.Log("textChange!");
         //获取当前的Text的GameObject
         
 

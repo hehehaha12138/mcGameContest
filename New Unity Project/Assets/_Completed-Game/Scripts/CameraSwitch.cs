@@ -16,7 +16,7 @@ public class CameraSwitch : MonoBehaviour {
 	public Vector3 OriginPos;
 	public Vector3 LeftPos;
 	public GameObject camera;
-    public GameObject Protangonist;
+    //public GameObject Protangonist;
 
 	// Use this for initialization
 	void Start () {
@@ -58,11 +58,11 @@ public class CameraSwitch : MonoBehaviour {
 			}
 		}
 
-        switch (i) {
-            case 1:
+        switch (index) {
+            case 0:
                 onSet2DCamera();
                 break;
-            case 2:
+            case 1:
                 onSet3DCamera();
                 break;
             default:
@@ -72,11 +72,24 @@ public class CameraSwitch : MonoBehaviour {
 	}
 
     void onSet2DCamera() {
-
+        if (on2DCamera != null)
+        {
+            on2DCamera();
+        }
+        else {
+            Debug.Log("2DEvent is null!");
+        }
     }
 
     void onSet3DCamera() {
-
+        if (on3DCamera != null)
+        {
+            on3DCamera();
+        }
+        else
+        {
+            Debug.Log("3DEvent is null!");
+        }
     }
 
     void GetSection() {
@@ -95,7 +108,7 @@ public class CameraSwitch : MonoBehaviour {
             //Debug.Log(r);
             double smallR = System.Math.Pow(r,2)-System.Math.Pow(planePosition.y-obstaclePosition.y,2);
             //smallR = System.Math.Pow(smallR, 0.5);
-            Debug.Log(smallR);
+            //Debug.Log(smallR);
         }
 
     }
