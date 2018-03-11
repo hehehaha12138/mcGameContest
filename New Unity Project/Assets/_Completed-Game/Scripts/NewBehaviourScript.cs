@@ -17,6 +17,7 @@ public class NewBehaviourScript : MonoBehaviour {
 	public AudioClip AC;
 	private bool isGround = true;
 	private int jumpCount = 2;
+    public bool isInit = false;
 
 	// Use this for initialization
 	void Start () {
@@ -61,7 +62,7 @@ public class NewBehaviourScript : MonoBehaviour {
         }
 
 		//Judge current camera
-		if(camera.GetComponent<Camera> ().enabled){
+		if(!isInit && camera.GetComponent<Camera> ().enabled){
 			float moveHorizonal = Input.GetAxis ("Horizontal");
 			float moveVertical  = Input.GetAxis ("Vertical");
 

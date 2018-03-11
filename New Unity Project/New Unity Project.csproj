@@ -300,6 +300,7 @@
     <Compile Include="Assets\_Completed-Game\Scripts\sphereJudgement.cs" />
     <Compile Include="Assets\_Completed-Game\Scripts\trackCamera.cs" />
     <Compile Include="Assets\_Completed-Game\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\gameEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\_Completed-Game\Plots\testPlots.txt" />

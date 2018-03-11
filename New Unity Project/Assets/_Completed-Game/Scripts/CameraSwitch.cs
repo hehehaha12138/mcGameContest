@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour {
+    //Change Camera Event
+    public delegate void CameraChangeEventHandler();
+
+    public static event CameraChangeEventHandler on2DCamera;
+    public static event CameraChangeEventHandler on3DCamera;
 
     public GameObject plane;
     public GameObject[] obstacles;
@@ -11,12 +16,16 @@ public class CameraSwitch : MonoBehaviour {
 	public Vector3 OriginPos;
 	public Vector3 LeftPos;
 	public GameObject camera;
+    public GameObject Protangonist;
 
 	// Use this for initialization
 	void Start () {
+        
+
 		cameras [0].GetComponent<Camera> ().enabled = true;
 		cameras [1].GetComponent<Camera> ().enabled = false;
-		cameras [2].GetComponent<Camera> ().enabled = false;
+
+        //cameras [2].GetComponent<Camera> ().enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -49,7 +58,26 @@ public class CameraSwitch : MonoBehaviour {
 			}
 		}
 
+        switch (i) {
+            case 1:
+                onSet2DCamera();
+                break;
+            case 2:
+                onSet3DCamera();
+                break;
+            default:
+                break;
+        }
+
 	}
+
+    void onSet2DCamera() {
+
+    }
+
+    void onSet3DCamera() {
+
+    }
 
     void GetSection() {
         for (int i = 0; i < obstacles.Length; i++) {
