@@ -16,6 +16,8 @@ public class CameraSwitch : MonoBehaviour {
 	public Vector3 OriginPos;
 	public Vector3 LeftPos;
 	public GameObject camera;
+
+    private int lastTime = -1;
     //public GameObject Protangonist;
 
 	// Use this for initialization
@@ -49,6 +51,11 @@ public class CameraSwitch : MonoBehaviour {
 			break;
 		}*/
 		int i = 0;
+
+        if (lastTime == index) {
+            return;
+        }
+
 		for (i = 0; i < cameras.Length; i++) {
 			if (i != index) {
 				cameras [i].GetComponent<Camera> ().enabled = false; 
@@ -57,7 +64,7 @@ public class CameraSwitch : MonoBehaviour {
 				cameras [i].GetComponent<Camera> ().enabled = true; 
 			}
 		}
-
+        
         switch (index) {
             case 0:
                 onSet2DCamera();
@@ -68,7 +75,7 @@ public class CameraSwitch : MonoBehaviour {
             default:
                 break;
         }
-
+        lastTime = index;
 	}
 
     void onSet2DCamera() {

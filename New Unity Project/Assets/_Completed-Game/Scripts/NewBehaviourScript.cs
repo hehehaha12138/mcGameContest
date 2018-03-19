@@ -18,8 +18,15 @@ public class NewBehaviourScript : MonoBehaviour {
 	private bool isGround = true;
 	private int jumpCount = 2;
     public bool isInit = false;
+    public delegate void getCollectHandler();
+    public static event getCollectHandler openExit;
     public delegate void moveEventHandler(Vector3 position);
     public static event moveEventHandler onMove;
+    public Material right_Material;
+    public Material left_Material;
+
+    private int collectCount = 0;
+    public int collectTarget;
 
     // Use this for initialization
     void Start () {
@@ -33,12 +40,15 @@ public class NewBehaviourScript : MonoBehaviour {
 			isGround = true;
 			jumpCount = 2;
 		}
+        if (collectCount >= collectTarget) {
+            openExit();
+        }
 
 	}
 
 	void FixedUpdate(){
         //Gravity
-        GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, 0.0f, 4.0f));
+        GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, 0.0f, 5.0f));
         //Constraints
         /*GetComponent<Rigidbody> ().position = new Vector3 (
 			Mathf.Clamp (GetComponent<Rigidbody> ().position.x, boundary.xMin, boundary.xMax),
@@ -84,9 +94,11 @@ public class NewBehaviourScript : MonoBehaviour {
             //Movement
             if (Input.GetKeyDown(KeyCode.D))
             {
+                GetComponent<Renderer>().material = right_Material;
                 GetComponent<Rigidbody>().velocity = new Vector3(-speed, 0, GetComponent<Rigidbody>().velocity.z);
             }
             else if (Input.GetKeyDown(KeyCode.A)) {
+                GetComponent<Renderer>().material = left_Material;
                 GetComponent<Rigidbody>().velocity = new Vector3(speed, 0, GetComponent<Rigidbody>().velocity.z);
             }
 
@@ -117,13 +129,14 @@ public class NewBehaviourScript : MonoBehaviour {
 
 
 	private void OnTriggerEnter(Collider other){
-		if (count > 0 && other.name != "my_plane_test") {
+		if (count > 0 && other.name != "my_plane_test" && other.name != "exit") {
 			if (other.gameObject.name == "jump_collider") {
 				isGround = true;
 				jumpCount = 2;
 				return;
 			}
 			Debug.Log ("获得一个方块！");
+            collectCount++;
 			AudioSource.PlayClipAtPoint (AC, transform.localPosition);
 			print (other.name);
 			Destroy (other.gameObject);
@@ -140,11 +153,11 @@ public class NewBehaviourScript : MonoBehaviour {
 	}
 
     public void on3D() {
-        transform.Rotate(0, 0, 90);
+        transform.Rotate(0, 0, -90);
     }
 
     public void on2D()
     {
-        transform.Rotate(0, 0, -90);
+        transform.Rotate(0, 0, 90);
     }
 }
