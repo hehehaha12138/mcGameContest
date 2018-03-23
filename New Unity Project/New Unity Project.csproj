@@ -304,7 +304,10 @@
     <Compile Include="Assets\followCamera.cs" />
     <Compile Include="Assets\gameEvents.cs" />
     <Compile Include="Assets\gravity.cs" />
+    <Compile Include="Assets\GravityDelegate.cs" />
     <Compile Include="Assets\GroundControl.cs" />
+    <Compile Include="Assets\MoveBehaviour.cs" />
+    <Compile Include="Assets\MoveGalaxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\_Completed-Game\Plots\testPlots.txt" />

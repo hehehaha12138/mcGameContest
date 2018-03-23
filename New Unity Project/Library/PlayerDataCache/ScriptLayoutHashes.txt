@@ -2,6 +2,7 @@ WindowsStandalone
 SceneListBegin?
 Assets/_Completed-Game/My Scene/StartScene.unity
 Assets/_Completed-Game/My Scene/scene_test_1.unity
+Assets/_Completed-Game/My Scene/main_level_scene.unity
 SceneListEnd?
 ad7d8c8120036e423b4af8f29089ca78 Assembly-CSharp.dll:.CameraPos
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -121,8 +122,9 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ExitJudgement
 958421fdb2ed4d0d92091237fe3d7bca Assembly-CSharp.dll:.CameraSwitch
-ae5b717d14a0eb7d672ba8564be9c44a Assembly-CSharp.dll:.NewBehaviourScript
+af6a03d985fd792803ad3c2fa5fc619b Assembly-CSharp.dll:.NewBehaviourScript
 2b5bd81c259c691324a17af9a3e97e85 Assembly-CSharp.dll:.CameraController
 299d9934f0080304ea76cf3b66b16414 Assembly-CSharp.dll:.loading
 4daf45ea92c6f4f42bb150464f141fc1 Assembly-CSharp.dll:.dialogue_UI_Motion
@@ -162,4 +164,3 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Rotator
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 8b3230cd0741979dbb265da49ab6597c Assembly-CSharp.dll:.PlotController
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ExitJudgement

@@ -17,6 +17,8 @@ public class ExitJudgement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("other.name");
+        Debug.Log(isExit);
         if (isExit && other.name == "my_cube_test")
         {
             SceneManager.LoadScene("main_level_scene");

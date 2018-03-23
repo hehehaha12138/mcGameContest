@@ -24,6 +24,8 @@ public class NewBehaviourScript : MonoBehaviour {
     public static event moveEventHandler onMove;
     public Material right_Material;
     public Material left_Material;
+    public float gravity;
+    public bool isGravity = true;
 
     private int collectCount = 0;
     public int collectTarget;
@@ -48,7 +50,10 @@ public class NewBehaviourScript : MonoBehaviour {
 
 	void FixedUpdate(){
         //Gravity
-        GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, 0.0f, 5.0f));
+        if (isGravity) {
+            GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, 0.0f, gravity));
+        }
+       
         //Constraints
         /*GetComponent<Rigidbody> ().position = new Vector3 (
 			Mathf.Clamp (GetComponent<Rigidbody> ().position.x, boundary.xMin, boundary.xMax),
