@@ -300,6 +300,7 @@
     <Compile Include="Assets\_Completed-Game\Scripts\sphereJudgement.cs" />
     <Compile Include="Assets\_Completed-Game\Scripts\trackCamera.cs" />
     <Compile Include="Assets\_Completed-Game\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\CameraControl.cs" />
     <Compile Include="Assets\ExitJudgement.cs" />
     <Compile Include="Assets\followCamera.cs" />
     <Compile Include="Assets\gameEvents.cs" />

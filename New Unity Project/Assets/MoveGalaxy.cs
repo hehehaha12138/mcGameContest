@@ -16,15 +16,16 @@ public class MoveGalaxy : MonoBehaviour {
     private int jumpCount = 2;
     private bool isJump = false;
 
-	// Use this for initialization
-	void Start () {
-        gravity.LandEventHandler += new gravity.LandController(GetLand);    
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void Start() {
+        gravity.LandEventHandler += new gravity.LandController(GetLand);
+        gravity.LaunchEventHandler += new gravity.LandController(OnLaunch);
+    }
+
+    // Update is called once per frame
+    void Update() {
+
+    }
 
     private void FixedUpdate()
     {
@@ -52,6 +53,9 @@ public class MoveGalaxy : MonoBehaviour {
         //Debug.Log("Angle:"+angle);
 
         Vector3 VerticalDirection = new Vector3(1.0f, 1.0f, -(direction.x + direction.y) / direction.z).normalized;
+
+        
+
         if (this.LastDirection == null)
         {
             this.LastDirection = VerticalDirection;
@@ -61,13 +65,29 @@ public class MoveGalaxy : MonoBehaviour {
             VerticalDirection = -VerticalDirection;
         }
 
-      
+        
+
+        // Debug.Log("Landing!!:" + landPlanet.name);
         //Debug.Log("speed:" + GetComponent<Rigidbody>().velocity);
         //Movement
         if (isLanding && Input.GetKey(KeyCode.D))
         {
-            isClockWise = true;
-            if (Input.GetKeyDown(KeyCode.Space) && jumpCount>0)
+            Vector3 clockwiseJudge = Vector3.Cross(new Vector3(direction.x, 0.0f, direction.z),
+                                               new Vector3(VerticalDirection.x, 0.0f, VerticalDirection.z));
+
+
+            if (clockwiseJudge.y > 0)
+            {
+                isClockWise = true;
+                Debug.Log("clockwise!");
+            }
+            else
+            {
+                isClockWise = false;
+                Debug.Log("inverse!");
+            }
+            
+            if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
             {
                 isJump = true;
                 isGround = false;
@@ -75,17 +95,32 @@ public class MoveGalaxy : MonoBehaviour {
                 GetComponent<Rigidbody>().velocity = speed * VerticalDirection + 0.5f * direction;
                 jumpCount--;
             }
-            else if(isGround)
+            else if (isGround)
             {
-                Debug.Log("Normal Move");
+                //Debug.Log("Normal Move");
                 GetComponent<Rigidbody>().velocity = speed * VerticalDirection;
             }
-            
+
+
         }
         else if (isLanding && Input.GetKey(KeyCode.A) && jumpCount > 0)
         {
-            isClockWise = false;
+            Vector3 clockwiseJudge = Vector3.Cross(new Vector3(direction.x, 0.0f, direction.z),
+                                               new Vector3(-VerticalDirection.x, 0.0f, -VerticalDirection.z));
 
+
+            if (clockwiseJudge.y > 0)
+            {
+                isClockWise = true;
+                Debug.Log("clockwise!");
+            }
+            else
+            {
+                isClockWise = false;
+                Debug.Log("inverse!");
+            }
+
+           
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isJump = true;
@@ -110,13 +145,17 @@ public class MoveGalaxy : MonoBehaviour {
         if (isLanding) {
             if (isClockWise)
             {
+                Debug.Log(angle);
                 //Debug.Log("clockWise!");
                 GetComponent<Rigidbody>().transform.Rotate(new Vector3(0.0f, angle, 0.0f));
+                this.transform.Find("Camera").transform.Rotate(new Vector3(0.0f, 0.0f,angle));
             }
             else
             {
+                Debug.Log(angle);
                 //Debug.Log("deClockWise!");
                 GetComponent<Rigidbody>().transform.Rotate(new Vector3(0.0f, -angle, 0.0f));
+                this.transform.Find("Camera").transform.Rotate(new Vector3(0.0f, 0.0f, -angle));
             }
         }
 
@@ -137,7 +176,7 @@ public class MoveGalaxy : MonoBehaviour {
             
         }*/
 
-      
+
         this.LastAngle = direction;
         this.LastDirection = VerticalDirection;
     }
@@ -147,5 +186,13 @@ public class MoveGalaxy : MonoBehaviour {
         jumpCount = 2;
         isGround = true;
         landPlanet = game;
+        isJump = false;
+    }
+
+    void OnLaunch(GameObject game)
+    {
+        if (this.landPlanet == game) {
+            this.landPlanet = null;
+        }
     }
 }

@@ -7,6 +7,7 @@ public class gravity : MonoBehaviour {
     public GameObject Plane;
     public delegate void LandController(GameObject gameObject);
     public static event LandController LandEventHandler;
+    public static event LandController LaunchEventHandler;
 
 	// Use this for initialization
 	void Start () {
@@ -29,12 +30,14 @@ public class gravity : MonoBehaviour {
             Vector3 Destination = new Vector3(GetComponent<Transform>().position.x,Plane.GetComponent<Transform>().position.y,GetComponent<Transform>().position.z);
             Vector3 Direction = Mathf.Pow(scale.x,2)*4*(kv.Value.GetComponent<Transform>().position - Destination).normalized;
             double distance = (kv.Value.GetComponent<Transform>().position - Destination).magnitude;
-            Debug.Log(distance);
-            Debug.Log(size.x * scale.x / 2);
-            if (distance-0.15 < size.x * scale.x / 2) {
+            //Debug.Log(distance);
+            //Debug.Log(size.x * scale.x / 2);
+            if (distance - 0.15 < size.x * scale.x / 2)
+            {
                 //Debug.Log("Langding!!:" + this.name);
                 LandEventHandler(this.transform.parent.gameObject);
             }
+        
             //Debug.Log(Destination.x);
             kv.Value.GetComponent<Rigidbody>().AddForce(-Direction/Mathf.Pow((float)distance,2));
             //Debug.Log("force over");
@@ -45,6 +48,14 @@ public class gravity : MonoBehaviour {
     {
         //Debug.Log(other.name);
         GravityInfluence.Add(other.name,other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        GravityInfluence.Remove(other.name);
+        if (other.transform.name == "Cube") {
+            LaunchEventHandler(this.transform.parent.gameObject);
+        }
     }
 
     /*private void judgePosition(GameObject game) {
