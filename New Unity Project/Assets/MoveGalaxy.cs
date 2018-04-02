@@ -15,11 +15,17 @@ public class MoveGalaxy : MonoBehaviour {
     private bool isGround = false;
     private int jumpCount = 2;
     private bool isJump = false;
+    private bool is3D = true;
+    private int spinCount = -1;
+    private Vector3 pPosition;
 
+    public delegate void TransformController(bool is3D);
+    public static event TransformController RotateEventHandler;
     // Use this for initialization
     void Start() {
         gravity.LandEventHandler += new gravity.LandController(GetLand);
         gravity.LaunchEventHandler += new gravity.LandController(OnLaunch);
+        planePosition.MoveEventHandler += new planePosition.MoveController(GetPlane);
     }
 
     // Update is called once per frame
@@ -49,10 +55,18 @@ public class MoveGalaxy : MonoBehaviour {
         //Debug.Log("Last:"+this.LastAngle);
         //Debug.Log("Now:"+direction);
 
-        float angle = Vector3.Angle(direction, LastAngle);
+        Vector3 temp = new Vector3(landPlanet.transform.position.x, pPosition.y, landPlanet.transform.position.z);
+
+        Vector3 planeDirection = this.transform.position - temp;
+
+        //Debug.Log("direction:"+planeDirection);
+        //Debug.Log("OldDirection:" + direction);
+
+
+        float angle = Vector3.Angle(planeDirection, LastAngle);
         //Debug.Log("Angle:"+angle);
 
-        Vector3 VerticalDirection = new Vector3(1.0f, 1.0f, -(direction.x + direction.y) / direction.z).normalized;
+        Vector3 VerticalDirection = new Vector3(1.0f, 0.0f, -direction.x / direction.z).normalized;
 
         
 
@@ -72,19 +86,19 @@ public class MoveGalaxy : MonoBehaviour {
         //Movement
         if (isLanding && Input.GetKey(KeyCode.D))
         {
-            Vector3 clockwiseJudge = Vector3.Cross(new Vector3(direction.x, 0.0f, direction.z),
-                                               new Vector3(VerticalDirection.x, 0.0f, VerticalDirection.z));
+            Vector3 clockwiseJudge = Vector3.Cross(new Vector3(planeDirection.x, 0.0f, planeDirection.z),
+                                               VerticalDirection);
 
 
             if (clockwiseJudge.y > 0)
             {
                 isClockWise = true;
-                Debug.Log("clockwise!");
+                //Debug.Log("clockwise!");
             }
             else
             {
                 isClockWise = false;
-                Debug.Log("inverse!");
+                //Debug.Log("inverse!");
             }
             
             if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
@@ -105,19 +119,19 @@ public class MoveGalaxy : MonoBehaviour {
         }
         else if (isLanding && Input.GetKey(KeyCode.A) && jumpCount > 0)
         {
-            Vector3 clockwiseJudge = Vector3.Cross(new Vector3(direction.x, 0.0f, direction.z),
-                                               new Vector3(-VerticalDirection.x, 0.0f, -VerticalDirection.z));
+            Vector3 clockwiseJudge = Vector3.Cross(new Vector3(planeDirection.x, 0.0f, planeDirection.z),
+                                               VerticalDirection);
 
 
-            if (clockwiseJudge.y > 0)
+            if (clockwiseJudge.y < 0)
             {
                 isClockWise = true;
-                Debug.Log("clockwise!");
+                //Debug.Log("clockwise!");
             }
             else
             {
                 isClockWise = false;
-                Debug.Log("inverse!");
+                //Debug.Log("inverse!");
             }
 
            
@@ -142,21 +156,52 @@ public class MoveGalaxy : MonoBehaviour {
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         }
 
-        if (isLanding) {
+        if (isLanding && is3D) {
             if (isClockWise)
             {
-                Debug.Log(angle);
+                //Debug.Log(angle);
                 //Debug.Log("clockWise!");
                 GetComponent<Rigidbody>().transform.Rotate(new Vector3(0.0f, angle, 0.0f));
-                this.transform.Find("Camera").transform.Rotate(new Vector3(0.0f, 0.0f,angle));
+                this.transform.Find("Camera").transform.Rotate(new Vector3(0.0f, 0.0f, angle));
             }
             else
             {
-                Debug.Log(angle);
+                //Debug.Log(angle);
                 //Debug.Log("deClockWise!");
                 GetComponent<Rigidbody>().transform.Rotate(new Vector3(0.0f, -angle, 0.0f));
                 this.transform.Find("Camera").transform.Rotate(new Vector3(0.0f, 0.0f, -angle));
             }
+        }
+
+        //Switch Camera
+        if (Input.GetKeyDown(KeyCode.F1) && !is3D)
+        {
+            RotateEventHandler(true);
+            is3D = true;
+            spinCount++;
+        }
+        else if(Input.GetKeyDown(KeyCode.F2) && is3D)
+        {
+            RotateEventHandler(false);
+            is3D = false;
+            spinCount++;
+        }
+
+        if (spinCount >= 0 && is3D)
+        {
+           
+           this.transform.Rotate(Vector3.back * 10);
+           spinCount++;
+        }
+        else if(spinCount >= 0 && !is3D)
+        {
+            
+            this.transform.Rotate(Vector3.forward * 10);
+            spinCount++;
+        }
+
+        if (spinCount == 9) {
+            spinCount = -1;
         }
 
         if (!isJump && Input.GetKeyDown(KeyCode.Space)) {
@@ -177,7 +222,7 @@ public class MoveGalaxy : MonoBehaviour {
         }*/
 
 
-        this.LastAngle = direction;
+        this.LastAngle = planeDirection;
         this.LastDirection = VerticalDirection;
     }
 
@@ -194,5 +239,9 @@ public class MoveGalaxy : MonoBehaviour {
         if (this.landPlanet == game) {
             this.landPlanet = null;
         }
+    }
+
+    void GetPlane(Vector3 pPosition) {
+        this.pPosition = pPosition;
     }
 }

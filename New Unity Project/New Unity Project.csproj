@@ -309,6 +309,9 @@
     <Compile Include="Assets\GroundControl.cs" />
     <Compile Include="Assets\MoveBehaviour.cs" />
     <Compile Include="Assets\MoveGalaxy.cs" />
+    <Compile Include="Assets\planeControl.cs" />
+    <Compile Include="Assets\planePosition.cs" />
+    <Compile Include="Assets\testScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\_Completed-Game\Plots\testPlots.txt" />

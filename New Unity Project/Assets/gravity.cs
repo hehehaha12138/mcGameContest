@@ -27,13 +27,14 @@ public class gravity : MonoBehaviour {
         //Debug.Log(scale.x);
         foreach (KeyValuePair<string, Collider> kv in GravityInfluence) {
             //Debug.Log("force:"+this.name);
-            Vector3 Destination = new Vector3(GetComponent<Transform>().position.x,Plane.GetComponent<Transform>().position.y,GetComponent<Transform>().position.z);
+            Vector3 Destination = this.transform.position;
             Vector3 Direction = Mathf.Pow(scale.x,2)*4*(kv.Value.GetComponent<Transform>().position - Destination).normalized;
             double distance = (kv.Value.GetComponent<Transform>().position - Destination).magnitude;
             //Debug.Log(distance);
             //Debug.Log(size.x * scale.x / 2);
-            if (distance - 0.15 < size.x * scale.x / 2)
+            if (distance < size.x * scale.x / 2 + 0.12 && distance > size.x * scale.x / 2 - 0.12)
             {
+                Debug.Log(distance);
                 //Debug.Log("Langding!!:" + this.name);
                 LandEventHandler(this.transform.parent.gameObject);
             }
