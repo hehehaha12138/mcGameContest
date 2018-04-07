@@ -33,7 +33,7 @@ public class CameraControl : MonoBehaviour {
         if (is3D)
         {
             delayJudge++;
-            if (delayJudge > 10) {
+            if (delayJudge > 20) {
                 delayJudge = 0;
                 if (distance - 2.5 > 0)
                 {

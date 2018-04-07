@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveGalaxy : MonoBehaviour {
     public float speed;
 
+    private Transform mainPlane;
     private bool isFirst = true;
     private bool isLanding = false;
     private bool isClockWise = true;
@@ -18,6 +19,8 @@ public class MoveGalaxy : MonoBehaviour {
     private bool is3D = true;
     private int spinCount = -1;
     private Vector3 pPosition;
+    public AudioClip AC;
+    private Transform curTransform;
 
     public delegate void TransformController(bool is3D);
     public static event TransformController RotateEventHandler;
@@ -26,11 +29,13 @@ public class MoveGalaxy : MonoBehaviour {
         gravity.LandEventHandler += new gravity.LandController(GetLand);
         gravity.LaunchEventHandler += new gravity.LandController(OnLaunch);
         planePosition.MoveEventHandler += new planePosition.MoveController(GetPlane);
+        mainPlane = this.transform.parent;
     }
 
     // Update is called once per frame
     void Update() {
-
+        curTransform = this.transform.parent;
+        Debug.Log(mainPlane);
     }
 
     private void FixedUpdate()
@@ -62,6 +67,10 @@ public class MoveGalaxy : MonoBehaviour {
         //Debug.Log("direction:"+planeDirection);
         //Debug.Log("OldDirection:" + direction);
 
+        if (isLanding && is3D) {
+            this.transform.parent = landPlanet.transform;
+        }
+
 
         float angle = Vector3.Angle(planeDirection, LastAngle);
         //Debug.Log("Angle:"+angle);
@@ -80,9 +89,6 @@ public class MoveGalaxy : MonoBehaviour {
         }
 
         
-
-        // Debug.Log("Landing!!:" + landPlanet.name);
-        //Debug.Log("speed:" + GetComponent<Rigidbody>().velocity);
         //Movement
         if (isLanding && Input.GetKey(KeyCode.D))
         {
@@ -176,12 +182,14 @@ public class MoveGalaxy : MonoBehaviour {
         //Switch Camera
         if (Input.GetKeyDown(KeyCode.F1) && !is3D)
         {
+            this.transform.parent = curTransform.transform;
             RotateEventHandler(true);
             is3D = true;
             spinCount++;
         }
         else if(Input.GetKeyDown(KeyCode.F2) && is3D)
         {
+            this.transform.parent = mainPlane.transform;
             RotateEventHandler(false);
             is3D = false;
             spinCount++;
@@ -190,22 +198,23 @@ public class MoveGalaxy : MonoBehaviour {
         if (spinCount >= 0 && is3D)
         {
            
-           this.transform.Rotate(Vector3.back * 10);
+           this.transform.Rotate(Vector3.back * 5);
            spinCount++;
         }
         else if(spinCount >= 0 && !is3D)
         {
             
-            this.transform.Rotate(Vector3.forward * 10);
+            this.transform.Rotate(Vector3.forward * 5);
             spinCount++;
         }
 
-        if (spinCount == 9) {
+        if (spinCount == 18) {
             spinCount = -1;
         }
 
+        //jump
         if (!isJump && Input.GetKeyDown(KeyCode.Space)) {
-            GetComponent<Rigidbody>().AddForce(150 * direction);
+            GetComponent<Rigidbody>().velocity = 0.5f * direction;
         }
 
         //Jump
@@ -243,5 +252,14 @@ public class MoveGalaxy : MonoBehaviour {
 
     void GetPlane(Vector3 pPosition) {
         this.pPosition = pPosition;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "Game Objective") {
+            Debug.Log("获得一个方块！:" + other.name);
+            //AudioSource.PlayClipAtPoint(AC, transform.localPosition);
+            Destroy(other.gameObject);
+        }
     }
 }

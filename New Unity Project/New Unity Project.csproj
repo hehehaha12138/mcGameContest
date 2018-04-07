@@ -311,6 +311,8 @@
     <Compile Include="Assets\MoveGalaxy.cs" />
     <Compile Include="Assets\planeControl.cs" />
     <Compile Include="Assets\planePosition.cs" />
+    <Compile Include="Assets\self_rotate.cs" />
+    <Compile Include="Assets\self_rotation.cs" />
     <Compile Include="Assets\testScript.cs" />
   </ItemGroup>
   <ItemGroup>
