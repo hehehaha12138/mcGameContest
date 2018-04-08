@@ -21,6 +21,7 @@ public class MoveGalaxy : MonoBehaviour {
     private Vector3 pPosition;
     public AudioClip AC;
     private Transform curTransform;
+    private bool isLandingOnObstacle = false;
 
     public delegate void TransformController(bool is3D);
     public static event TransformController RotateEventHandler;
@@ -35,7 +36,7 @@ public class MoveGalaxy : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         curTransform = this.transform.parent;
-        Debug.Log(mainPlane);
+        //Debug.Log(mainPlane);
     }
 
     private void FixedUpdate()
@@ -115,7 +116,7 @@ public class MoveGalaxy : MonoBehaviour {
                 GetComponent<Rigidbody>().velocity = speed * VerticalDirection + 0.5f * direction;
                 jumpCount--;
             }
-            else if (isGround)
+            else if (isGround || isLandingOnObstacle)
             {
                 //Debug.Log("Normal Move");
                 GetComponent<Rigidbody>().velocity = speed * VerticalDirection;
@@ -149,7 +150,7 @@ public class MoveGalaxy : MonoBehaviour {
                 GetComponent<Rigidbody>().velocity = -speed * VerticalDirection + 0.5f * direction;
                 jumpCount--;
             }
-            else if (isGround)
+            else if (isGround || isLandingOnObstacle)
             {
                 GetComponent<Rigidbody>().velocity = -speed * VerticalDirection;
             }
@@ -260,6 +261,14 @@ public class MoveGalaxy : MonoBehaviour {
             Debug.Log("获得一个方块！:" + other.name);
             //AudioSource.PlayClipAtPoint(AC, transform.localPosition);
             Destroy(other.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("collision:" + collision.gameObject.name);
+        if (collision.gameObject.name.Split('_')[0].Equals("decorate")) {
+            isLandingOnObstacle = true;
         }
     }
 }

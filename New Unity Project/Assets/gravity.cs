@@ -30,12 +30,12 @@ public class gravity : MonoBehaviour {
             Vector3 Destination = this.transform.position;
             Vector3 Direction = Mathf.Pow(scale.x,2)*4*(kv.Value.GetComponent<Transform>().position - Destination).normalized;
             double distance = (kv.Value.GetComponent<Transform>().position - Destination).magnitude;
-            Debug.Log(distance);
-            Debug.Log(size.x * scale.x / 2);
+            //Debug.Log(distance);
+            //Debug.Log("perimeter:"+size.x * scale.x / 2);
             if (distance < size.x * scale.x / 2 + 0.2 && distance > size.x * scale.x / 2 - 0.2)
             {
-                Debug.Log(distance);
-                Debug.Log("Langding!!:" + this.name);
+                //Debug.Log(distance);
+                //Debug.Log("Langding!!:" + this.name);
                 LandEventHandler(this.transform.parent.gameObject);
             }
         
